@@ -1,14 +1,4 @@
 <?php
-/**
- * The model file of ldap module of ZenTaoPMS.
- *
- * @license     ZPL (http://zpl.pub/page/zplv11.html)
- * @author      TigerLau
- * @package     ldap
- * @link        http://www.zentao.net
- */
-?>
-<?php
 class ldapModel extends model
 {
     public function identify($host,$port, $dn, $pwd)

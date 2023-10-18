@@ -1,15 +1,3 @@
-<?php
-/**
- * The index view file of ldap module of ZenTaoPMS.
- *
- * @copyright   Copyright 2009-2010 QingDao Nature Easy Soft Network Technology Co,LTD (www.cnezsoft.com)
- * @license     LGPL (http://www.gnu.org/licenses/lgpl.html)
- * @author      Yidong Wang <yidong@cnezsoft.com>
- * @package     ldap
- * @version     $Id$
- * @link        http://www.zentao.net
- */
-?>
 <?php include $app->getModuleRoot() . 'common/view/header.html.php';?>
 <?php include $app->getModuleRoot() . 'common/view/datepicker.html.php';?>
 <div id='mainContent' class='main-content'>
