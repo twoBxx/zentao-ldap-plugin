@@ -34,9 +34,9 @@ EX: `$lang->admin->menuList->company['subMenu']['xxxx'] => array('link' => "{$la
 
 |  选项   | 示例值  | 必填 | 默认值 |
 |  ----  | ----  | --- | --- |
-| 是否开启  | 	下拉选择 | F | 关闭 |
-|||||
 |基础配置||||
+|||||
+| 是否开启  | 	下拉选择 | F | 关闭 |
 | 协议  | 	ldap:// | T | ldap:// |
 | LDAP服务器  | 	ldap.test.com | T | |
 | 端口  | 	389 | T | |
@@ -45,6 +45,7 @@ EX: `$lang->admin->menuList->company['subMenu']['xxxx'] => array('link' => "{$la
 | BindDN 密码  | ou=users,dc=test,dc=com | T | | 
 |||||
 |属性配置||||
+|||||
 | 账号字段  | 	uid | T | uid |
 | 默认用户组  | 	下拉选择 | F | 管理员 |
 | Mail  | 	mail | F | mail |
