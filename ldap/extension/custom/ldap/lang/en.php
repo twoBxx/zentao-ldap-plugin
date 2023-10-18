@@ -11,6 +11,7 @@
  */
 $lang->ldap->common 		= "LDAP";
 $lang->ldap->setting    	= "Setting";
+$lang->ldap->example        = "Example：";
 $lang->ldap->host 			= 'LDAP Host:  ';
 $lang->ldap->version 		= 'Protocol Version:  ';
 $lang->ldap->bindDN 		= 'BindDN:  ';
@@ -23,6 +24,7 @@ $lang->ldap->save 			= 'Save';
 $lang->ldap->test 			= 'Connect Test';
 $lang->ldap->mail 			= 'EMail:';
 $lang->ldap->name  			= 'Name Attrubte:';
+$lang->ldap->mobile  			= 'Mobile:';
 $lang->ldap->group  			= 'Default Group:';
 
 $lang->ldap->placeholder->group 	= 'Add a default group to users who have passed through LDAP.';

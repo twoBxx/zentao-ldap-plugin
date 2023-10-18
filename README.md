@@ -2,8 +2,6 @@
 
 这个插件是在 “[禅道开源版LDAP插件](https://github.com/TigerLau1985/ZenTao_LDAP)” 上基础进行的修正，使其可以在 禅道开源版 18.x 上正常运行
 
-测试的 zentao 版本 https://github.com/shynome/zentao-docker , 更新的版本可能不行, 如果有 pr 修复的话会接受的
-
 ### 配置示例
 
 |  选项   | 示例值  |

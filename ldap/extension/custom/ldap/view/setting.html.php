@@ -1,91 +1,133 @@
 <?php
+/**
+ * The index view file of ldap module of ZenTaoPMS.
+ *
+ * @copyright   Copyright 2009-2010 QingDao Nature Easy Soft Network Technology Co,LTD (www.cnezsoft.com)
+ * @license     LGPL (http://www.gnu.org/licenses/lgpl.html)
+ * @author      Yidong Wang <yidong@cnezsoft.com>
+ * @package     ldap
+ * @version     $Id$
+ * @link        http://www.zentao.net
+ */
 ?>
 <?php include $app->getModuleRoot() . 'common/view/header.html.php';?>
 <?php include $app->getModuleRoot() . 'common/view/datepicker.html.php';?>
-<div class='container mw-700px'>
-    <div id='titlebar'>
-        <div class='heading'>
-            <span class='prefix'><?php echo html::icon($lang->icons['mail']);?></span>
-            <strong><?php echo $lang->ldap->common;?></strong>
-            <small class='text-muted'> <?php echo $lang->ldap->setting;?> <?php echo html::icon('cog');?></small>
-        </div>
+<div id='mainContent' class='main-content'>
+    <div class='center-block'>
+        <form method="post" class="main-form" action='<?php echo inlink('save');?>' id='ldapForm'>
+            <div class='detail-title'><?php echo $lang->ldap->base?></div>
+            <table class='table table-form'>
+                <!-- 功能开启状态 -->
+                <tr>
+                    <th class='thWidth'><?php echo $lang->ldap->turnon?></th>
+                    <td class='w-400px'>
+                        <?php echo html::select('turnon', $lang->ldap->turnonList, $config->ldap->turnon, "class='form-control  chosen'")?>
+                    </td>
+                    <td></td>
+                </tr>
+                <!-- LDAP HOST -->
+                <tr>
+                    <th><?php echo $lang->ldap->ssl?></th>
+                    <td class='required'>
+                        <?php echo html::select('ssl',$lang->ldap->sslList,empty($config->ldap->ssl) ? 'ldap://' : $config->ldap->ssl,"class='form-control chosen'");?>
+                    </td>
+                </tr>
+                <tr>
+                    <th><?php echo $lang->ldap->host?></th>
+                    <td class='required'>
+                        <?php echo html::input('host', $config->ldap->host, "class='form-control' autocomplete='off'")?>
+                    </td>
+                    <td><?php echo $lang->ldap->example . 'ldap.test.com'?></td>
+                </tr>
+                <!-- LDAP PORT -->
+                <tr>
+                    <th><?php echo $lang->ldap->port?></th>
+                    <td class='required'>
+                        <?php echo html::input('port', $config->ldap->port, "class='form-control' autocomplete='off'")?>
+                    </td>
+                    <td><?php echo $lang->ldap->example . '389'?></td>
+                </tr>
+                <!-- VERSION -->
+                <tr>
+                    <th><?php echo $lang->ldap->version?></th>
+                    <td><?php echo html::select('version',$lang->ldap->versionList, empty($config->ldap->version) ? '3' : $config->ldap->version, "class='form-control chosen'")?>
+                    </td>
+                </tr>
+                <!-- LDAP Base DN -->
+                <tr>
+                    <th><?php echo $lang->ldap->baseDN; ?></th>
+                    <td class='required'>
+                        <?php echo html::input('baseDN', $config->ldap->baseDN, "class='form-control'");?></td>
+                    <td><?php echo $lang->ldap->example . 'ou=users,dc=test,dc=com'?></td>
+                </tr>
+                <!-- LDAP Admin Bind DN -->
+                <tr>
+                    <th><?php echo $lang->ldap->bindDN; ?></th>
+                    <td class='required'>
+                        <?php echo html::input('bindDN', $config->ldap->bindDN, "class='form-control'");?></td>
+                    <td><?php echo $lang->ldap->example . 'cn=admin,dc=test,dc=com'?></td>
+                </tr>
+                <!-- LDAP Admin Bind Password -->
+                <tr>
+                    <th><?php echo $lang->ldap->password; ?></th>
+                    <td class='required'>
+                        <?php echo html::password('bindPWD', $config->ldap->bindPWD, "class='form-control'");?></td>
+                </tr>
+            </table>
+            <div class='detail-title'><?php echo $lang->ldap->attr?></div>
+            <table class='table table-form'>
+                <!-- LDAP UID 映射字段 -->
+                <tr>
+                    <th class='thWidth'><?php echo $lang->ldap->uid?></th>
+                    <td class='w-400px required'>
+                        <?php echo html::input('uid', empty($config->ldap->uid) ? 'uid' : $config->ldap->uid, "class='form-control' autocomplete='off'")?>
+                    </td>
+                    <td><?php echo $lang->ldap->accountPS?></td>
+                </tr>
+                <!-- 默认导入分组 -->
+                <tr>
+                    <th><?php echo $lang->ldap->group; ?></th>
+                    <td>
+                        <?php echo html::select('group', $groupList, (!empty($group) ? $group : '1'), "class='form-control chosen'");?>
+                    </td>
+                    <td><?php echo $lang->ldap->placeholder->group;?></td>
+                </tr>
+                <!-- LDAP 真实姓名字段 -->
+                <tr>
+                    <th><?php echo $lang->ldap->name?></th>
+                    <td><?php echo html::input('name', empty($config->ldap->name) ? 'cn' : $config->ldap->name, "class='form-control' autocomplete='off'")?>
+                    </td>
+                </tr>
+                <!-- LDAP 邮箱字段映射-->
+                <tr>
+                    <th><?php echo $lang->ldap->mail?></th>
+                    <td><?php echo html::input('mail', empty($config->ldap->mail) ? 'mail' : $config->ldap->mail, "class='form-control' autocomplete='off'")?>
+                    </td>
+                </tr>
+                <!-- LDAP 手机号字段 -->
+                <tr>
+                    <th><?php echo $lang->ldap->mobile?></th>
+                    <td><?php echo html::input('mobile', empty($config->ldap->mobile) ? 'mobile' : $config->ldap->mobile, "class='form-control' autocomplete='off'")?>
+                    </td>
+                </tr>
+                <!-- LDAP 操作按钮 -->
+                <tr>
+                    <td colspan='3' class="text-center form-actions">
+                        
+                        <?php $disabled = empty($config->ldap->turnon) ? 'disabled' : '';?>
+                        <!-- 提交按钮 -->
+                        <?php echo html::submitButton($lang->ldap->save, '', 'btn btn-secondary btn-wide');?>
+                        <!-- 测试链接 -->
+                        <?php echo html::commonButton($lang->ldap->test, "onclick='javascript:onClickTest()' $disabled",'btn btn-primary') ?>
+                        <!-- 同步数据 -->
+                        <?php echo html::commonButton($lang->ldap->sync, "onclick='javascript:sync()' $disabled",'btn btn-primary');?>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
-    <form class='form-condensed pdt-20' method='post' action='<?php echo inlink('save');?>'>
-        <table class='table table-form'>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->host; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapHost', $config->ldap->host, "class='form-control'");?>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->version; ?></th>
-                <td class='w-p50'>
-                    <?php echo html::input('ldapVersion', $config->ldap->version, "class='form-control'");?></td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->bindDN; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapBindDN', $config->ldap->bindDN, "class='form-control'");?>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->password; ?></th>
-                <td class='w-p50'>
-                    <?php echo html::password('ldapPassword', $config->ldap->bindPWD, "class='form-control'");?></td>
-            </tr>
-            <tr>
-                <td class='w-p25'></td>
-                <td class="text-right">
-                    <label id='testRlt'></label>
-                    <button type='button' onclick='javascript:onClickTest()' class='btn '>测试连接</button>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->baseDN; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapBaseDN', $config->ldap->baseDN, "class='form-control'");?>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->filter; ?></th>
-                <td class='w-p50'>
-                    <?php echo html::input('ldapFilter', $config->ldap->searchFilter, "class='form-control'");?></td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->attributes; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapAttr', $config->ldap->uid, "class='form-control'");?></td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->mail; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapMail', $config->ldap->mail, "class='form-control'");?>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->name; ?></th>
-                <td class='w-p50'><?php echo html::input('ldapName', $config->ldap->name, "class='form-control'");?>
-                </td>
-            </tr>
-            <tr>
-                <th class='w-p25'><?php echo $lang->ldap->group; ?></th>
-                <td class='w-p50'>
-                    <?php echo html::select('group', $groupList, (!empty($group) ? $group : ''), "class='form-control chosen'");?>
-                </td>
-                <td><?php echo $lang->ldap->placeholder->group;?></td>
-            </tr>
-
-            <tr>
-                <td class='w-p25'></td>
-                <td class="text-center">
-                    <?php
-                    echo html::submitButton($lang->ldap->save, '', 'btn btn-secondary btn-wide');
-                    echo html::commonButton($lang->ldap->sync, 'onclick="javascript:sync()"','btn btn-secondary btn-wide');
-                    ?>
-                </td>
-            </tr>
-
-        </table>
-    </form>
 </div>
-<?php include '../../common/view/footer.html.php';?>
-
+<?php include $app->getModuleRoot() . 'common/view/footer.html.php';?>
 <?php
   echo '<script>';
 include '../js/setting.js';
