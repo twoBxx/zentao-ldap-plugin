@@ -79,7 +79,7 @@ class ldapModel extends model
             $account = $this->dao->select('*')->from(TABLE_USER)->where('account')->eq($user->account)->fetch('account');
 
             if(!empty($group->group)) {
-                $gtmp = $this->dao->select('*')->from(TABLE_USERGROUP)->where('account')->eq($user->account)->exec();
+                $gtmp = $this->dao->select('*')->from(TABLE_USERGROUP)->where('account')->eq($user->account)->fetch('account');
                 if(!empty($gtmp)){
                     $this->dao->update(TABLE_USERGROUP)->data($group)->where('account')->eq($user->account)->exec();
                 }else{
