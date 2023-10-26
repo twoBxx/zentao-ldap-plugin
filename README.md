@@ -30,6 +30,12 @@ EX: `$lang->admin->menuList->company['subMenu']['xxxx'] => array('link' => "{$la
 需要修改的地方为:
 1. `ldap/model.php` 中 `sync2db` 方法, 修改 `$user` 对象即可,如: `$user->dingding = xxxx`
 
+
+### Debug 调试
+1. 修改文件 `vi /apps/zentao/config/my.php`, 打开 Debug：
+将`$config->debug` 值修改为 **`true`**
+2. 查看日志，日志目录在 `/apps/zentao/tmp/log` 或 `/apps/zentao/tmp/log.14` , 2个文件夹的区别是版本的区别
+
 ### 配置示例
 
 |  选项   | 示例值  | 必填 | 默认值 |
@@ -55,3 +61,4 @@ EX: `$lang->admin->menuList->company['subMenu']['xxxx'] => array('link' => "{$la
 ### 从钉钉同步信息到ldap
 
 > 参考 https://github.com/anjia0532/virtual-ldap
+
