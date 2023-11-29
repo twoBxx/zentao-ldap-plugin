@@ -4,6 +4,7 @@ $(function () {
 function onClickTest() {
 	$.post(createLink('ldap', 'test'), {
 		host: $('#host').val(),
+		ssl: $('#ssl').val(),
 		port: $('#port').val(),
 		dn: $('#bindDN').val(),
 		pwd: $('#bindPWD').val(),

@@ -92,7 +92,8 @@ class ldap extends control
 
     public function test()
     {
-        echo $this->ldap->identify($this->post->host,$this->post->port, $this->post->dn, $this->post->pwd);
+        $fh = $this->config->ldap->sslList[$this->post->ssl] . $this->post->host . ':' .$this->post->port;
+        echo $this->ldap->identify($fh , $this->post->dn, $this->post->pwd);
     }
 
     public function sync()
@@ -105,7 +106,7 @@ class ldap extends control
     {
         $ret = false;
         $account = $this->config->ldap->uid.'='.$user.','.$this->config->ldap->baseDN;
-        if (0 == strcmp('Success', $this->ldap->identify($this->config->ldap->host,$this->config->ldap->port,$this->config->ldap->port, $account, $pwd))) {
+        if (0 == strcmp('Success', $this->ldap->identify($this->config->ldap->fullHost, $account, $pwd))) {
             $ret = true;
         }
 

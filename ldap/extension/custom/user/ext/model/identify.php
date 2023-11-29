@@ -3,7 +3,7 @@ public function identify($account, $password)
 {
 	// invalid fields
 	if(!$account or !$password ) return false;
-$user = false;
+	$user = false;
 	$record = $this->dao->select('*')->from(TABLE_USER)
 		->where('account')->eq($account)
 		->andWhere('deleted')->eq(0)
@@ -17,7 +17,8 @@ $user = false;
 
 	$ldap = $this->loadModel('ldap');
 	$dn = $ldap->getUserDn($this->config->ldap, $account);
-	$pass = $ldap->identify($this->config->ldap->host, $this->config->ldap->port, $dn, $password);
+	
+	$pass = $ldap->identify($this->config->ldap->fullHost, $dn, $password);
 	if (0 == strcmp('Success', $pass)) {
 		$user = $record;
 		$ip   = $this->server->remote_addr;

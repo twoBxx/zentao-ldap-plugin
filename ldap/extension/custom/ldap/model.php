@@ -1,10 +1,10 @@
 <?php
 class ldapModel extends model
 {
-    public function identify($host,$port, $dn, $pwd)
+    public function identify($host, $dn, $pwd)
     {
         $ret = '';
-        $ds = ldap_connect($host,intval($port));
+        $ds = ldap_connect($host);
         if ($ds) {
             ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, $this->config->ldap->version);
             ldap_bind($ds, $dn, $pwd);

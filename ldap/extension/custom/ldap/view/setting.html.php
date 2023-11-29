@@ -6,13 +6,13 @@
             <div class='detail-title'><?php echo $lang->ldap->base?></div>
             <table class='table table-form'>
                 <!-- 功能开启状态 -->
-                <tr>
+                <!-- <tr>
                     <th class='thWidth'><?php echo $lang->ldap->turnon?></th>
                     <td class='w-400px'>
                         <?php echo html::select('turnon', $lang->ldap->turnonList, $config->ldap->turnon, "class='form-control  chosen'")?>
                     </td>
                     <td></td>
-                </tr>
+                </tr> -->
                 <!-- LDAP HOST -->
                 <tr>
                     <th><?php echo $lang->ldap->ssl?></th>
@@ -102,7 +102,7 @@
                 <tr>
                     <td colspan='3' class="text-center form-actions">
                         
-                        <?php $disabled = empty($config->ldap->turnon) ? 'disabled' : '';?>
+                        <?php $disabled = empty($config->ldap->turnon) ? '' : '';?>
                         <!-- 提交按钮 -->
                         <?php echo html::submitButton($lang->ldap->save, '', 'btn btn-secondary btn-wide');?>
                         <!-- 测试链接 -->
