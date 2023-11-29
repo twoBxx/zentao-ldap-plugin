@@ -5,10 +5,11 @@
 
 ## 功能
 1. 兼容本地用户和LDAP用户同时登录
-    * 请检查所使用的数据库中 `zt_user` 是否存在字段 `ldap`，如不存在，则需要在 `db` 目录中增加脚本，详情参考 [禅道二次开发手册](https://www.zentao.net/book/api/144.html) 中的 *目录结构* 章节
+    * 插件安装即开启，无数据同步不会对现有登录方式产生任何影响
+    * 请检查所使用的数据库中 `zt_user` 是否存在字段 `ldap`，如不存在，则需要在 `db` 目录中增加脚本，详情参考 [禅道二次开发手册](https://www.zentao.net/book/api/144.html) 中的 **目录结构** 章节
     * <span style='color:red' >`admin` 用户也会被覆盖。 LDAP 中要导入的数据存在 `admin` 账户时，切记要先备份原数据</span>
 2. 支持默认分组功能，数据落地 DB(`zt_usergroup` 表)
-3. 新增 协议，端口 配置
+3. 分离 **协议** 、**端口** 字段
 4. 新增手机号数据保存
 
 ## 说明
@@ -42,7 +43,6 @@ EX: `$lang->admin->menuList->company['subMenu']['xxxx'] => array('link' => "{$la
 |  ----  | ----  | --- | --- |
 |基础配置||||
 |||||
-| 是否开启  | 	下拉选择 | F | 关闭 |
 | 协议  | 	ldap:// | T | ldap:// |
 | LDAP服务器  | 	ldap.test.com | T | |
 | 端口  | 	389 | T | |

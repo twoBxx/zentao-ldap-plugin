@@ -46,14 +46,14 @@
                     <th><?php echo $lang->ldap->baseDN; ?></th>
                     <td class='required'>
                         <?php echo html::input('baseDN', $config->ldap->baseDN, "class='form-control'");?></td>
-                    <td><?php echo $lang->ldap->example . 'ou=users,dc=test,dc=com'?></td>
+                    <td><?php echo  '用户搜索域,完整DN. ' . $lang->ldap->example . 'ou=users,dc=test,dc=com'?></td>
                 </tr>
                 <!-- LDAP Admin Bind DN -->
                 <tr>
                     <th><?php echo $lang->ldap->bindDN; ?></th>
                     <td class='required'>
                         <?php echo html::input('bindDN', $config->ldap->bindDN, "class='form-control'");?></td>
-                    <td><?php echo $lang->ldap->example . 'cn=admin,dc=test,dc=com'?></td>
+                    <td><?php echo '搜索的账号,需要具备管理员权限. ' . $lang->ldap->example . 'cn=admin,dc=test,dc=com'?></td>
                 </tr>
                 <!-- LDAP Admin Bind Password -->
                 <tr>
