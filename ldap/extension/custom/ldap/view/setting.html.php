@@ -46,14 +46,14 @@
                     <th><?php echo $lang->ldap->baseDN; ?></th>
                     <td class='required'>
                         <?php echo html::input('baseDN', $config->ldap->baseDN, "class='form-control'");?></td>
-                    <td><?php echo  '用户搜索域,完整DN. ' . $lang->ldap->example . 'ou=users,dc=test,dc=com'?></td>
+                    <td><?php echo $lang->ldap->baseDNTips . ' ' . $lang->ldap->example . 'ou=users,dc=test,dc=com'?></td>
                 </tr>
                 <!-- LDAP Admin Bind DN -->
                 <tr>
                     <th><?php echo $lang->ldap->bindDN; ?></th>
                     <td class='required'>
                         <?php echo html::input('bindDN', $config->ldap->bindDN, "class='form-control'");?></td>
-                    <td><?php echo '搜索的账号,需要具备管理员权限. ' . $lang->ldap->example . 'cn=admin,dc=test,dc=com'?></td>
+                    <td><?php echo $lang->ldap->bindDNTips . ' ' . $lang->ldap->example . 'cn=admin,dc=test,dc=com'?></td>
                 </tr>
                 <!-- LDAP Admin Bind Password -->
                 <tr>
@@ -68,9 +68,9 @@
                 <tr>
                     <th class='thWidth'><?php echo $lang->ldap->uid?></th>
                     <td class='w-400px required'>
-                        <?php echo html::input('uid', empty($config->ldap->uid) ? 'uid' : $config->ldap->uid, "class='form-control' autocomplete='off'")?>
+                        <?php echo html::input('uid', $config->ldap->uid, "class='form-control' autocomplete='off'")?>
                     </td>
-                    <td><?php echo $lang->ldap->accountPS?></td>
+                    <td><?php echo $lang->ldap->accountPS . '. '. $lang->ldap->example . 'uid' ?></td>
                 </tr>
                 <!-- 默认导入分组 -->
                 <tr>
@@ -78,30 +78,36 @@
                     <td>
                         <?php echo html::select('group', $groupList, (!empty($group) ? $group : '1'), "class='form-control chosen'");?>
                     </td>
-                    <td><?php echo $lang->ldap->placeholder->group;?></td>
+                    <td><?php echo $lang->ldap->groupTips;?></td>
                 </tr>
                 <!-- LDAP 真实姓名字段 -->
                 <tr>
                     <th><?php echo $lang->ldap->name?></th>
-                    <td><?php echo html::input('name', empty($config->ldap->name) ? 'cn' : $config->ldap->name, "class='form-control' autocomplete='off'")?>
-                    </td>
+                    <td><?php echo html::input('name', $config->ldap->name, "class='form-control' autocomplete='off'")?>
+                    <td><?php echo $lang->ldap->example . 'cn' ?></td>
                 </tr>
                 <!-- LDAP 邮箱字段映射-->
                 <tr>
                     <th><?php echo $lang->ldap->mail?></th>
-                    <td><?php echo html::input('mail', empty($config->ldap->mail) ? 'mail' : $config->ldap->mail, "class='form-control' autocomplete='off'")?>
-                    </td>
+                    <td><?php echo html::input('mail', $config->ldap->mail, "class='form-control' autocomplete='off'")?>
+                    <td><?php echo $lang->ldap->example . 'mail' ?></td>
                 </tr>
                 <!-- LDAP 手机号字段 -->
                 <tr>
                     <th><?php echo $lang->ldap->mobile?></th>
-                    <td><?php echo html::input('mobile', empty($config->ldap->mobile) ? 'mobile' : $config->ldap->mobile, "class='form-control' autocomplete='off'")?>
-                    </td>
+                    <td><?php echo html::input('mobile', $config->ldap->mobile, "class='form-control' autocomplete='off'")?>
+                    <td><?php echo $lang->ldap->example . 'mobile' ?></td>
+                </tr>
+                <!-- LDAP 电话字段 -->
+                <tr>
+                    <th><?php echo $lang->ldap->phone?></th>
+                    <td><?php echo html::input('phone', $config->ldap->phone, "class='form-control' autocomplete='off'")?>
+                    <td><?php echo $lang->ldap->example . 'phone' ?></td>
                 </tr>
                 <!-- LDAP 操作按钮 -->
                 <tr>
                     <td colspan='3' class="text-center form-actions">
-                        
+
                         <?php $disabled = empty($config->ldap->turnon) ? '' : '';?>
                         <!-- 提交按钮 -->
                         <?php echo html::submitButton($lang->ldap->save, '', 'btn btn-secondary btn-wide');?>
@@ -117,7 +123,7 @@
 </div>
 <?php include $app->getModuleRoot() . 'common/view/footer.html.php';?>
 <?php
-  echo '<script>';
-include '../js/setting.js';
-echo '</script>';
+    echo '<script>';
+    include '../js/setting.js';
+    echo '</script>';
 ;?>
