@@ -4,7 +4,7 @@ code: ldap
 type: extension
 copyright: xx
 author: 'xx<twobx@gamil.com>'
-abstract: Support Open LDAP 
+abstract: Support Open LDAP
 desc: >
   Provide Open LDAP user import for ZenTaoPMS
 install: |
@@ -19,3 +19,13 @@ releases:
       2. Dynamic Switched LDAP
       3. support store mobile
     date: 2023
+  1.1:
+    zentaoversion: 18.*
+    charge: free
+    license: GPL V3
+    author: 'ZhangSean'
+    changelog: |
+      1. Automatically sync logged-in users
+      2. Supports phone info
+      3. Optimize code
+    date: 2024-04-09
