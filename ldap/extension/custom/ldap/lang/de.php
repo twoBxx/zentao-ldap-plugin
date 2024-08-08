@@ -13,19 +13,22 @@ $lang->ldap->host 			= 'LDAP Server';
 $lang->ldap->port           = 'Port';
 $lang->ldap->version 		= 'Protocol Version';
 $lang->ldap->bindDN 		= 'BindDN';
+$lang->ldap->bindDNTips 	= 'LDAP Admin Account.';
 $lang->ldap->password 		= 'BindDN Password';
 $lang->ldap->baseDN 		= 'searchDN';
+$lang->ldap->baseDNTips 	= 'Base user search DN.';
 $lang->ldap->uid 	        = 'Login Account';
 $lang->ldap->mail 			= 'Email';
 $lang->ldap->name  			= 'Real Name';
-$lang->ldap->mobile  			= 'Mobile';
-$lang->ldap->group  			= 'Default Group';
+$lang->ldap->mobile  		= 'Mobile';
+$lang->ldap->phone  		= 'Phone';
+$lang->ldap->group  		= 'Default Group';
 
 $lang->ldap->sync 			= 'Sync';
 $lang->ldap->save 			= 'Save';
 $lang->ldap->test 			= 'Test Connection';
 
-$lang->ldap->placeholder->group 	= 'Group to which LDAP user belongs after login';
+$lang->ldap->groupTips 	= 'Group to which LDAP user belongs after login';
 $lang->ldap->accountPS = 'Account on LDAP server';
 
 $lang->ldap->turnonList[0] = 'OFF';
